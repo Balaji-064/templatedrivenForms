@@ -1,0 +1,45 @@
+.erroemessage{
+    color: red;
+}
+h1{
+    text-align: center;
+}
+button{
+    color:white;
+    font-weight: bold;
+    background-color: blue;
+
+}
+.amountCalculation{
+    text-align: center;
+}
+.form-dropDown{
+    width: 180px;
+    height:25px;
+    
+}
+table{
+    border: solid 1px;
+    text-align: ce
+}
+th{
+    border: solid 1px;
+}
+td{
+    border: solid  red 1px;
+}
+.centeralign{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+}
+ul{
+    list-style: none;
+    flex-direction: row;
+    display: flex;
+}
+li{
+    border:solid 1px;
+    gap:10px;
+}
