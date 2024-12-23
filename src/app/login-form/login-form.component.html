@@ -1,0 +1,44 @@
+<h1>Welcome to shops</h1>
+<form class="loginForm" #forms="ngForm">
+  <div>
+    <div class="formslog">
+      <label class="form-label" for="mobilenumber">Mobilenumber:</label>
+
+      <input required minlength="10" maxlength="10" class="form-control" type="text" autocomplete="off" id="userinput"
+        #itemid="ngModel" name="itemid" ngModel />
+
+
+      <button id="otpbutton" (click)="MobileNumber()">get otp</button><br>
+
+      <span *ngIf="valid">{{errormessage}}</span>
+
+
+
+    </div>
+    <div>
+      <form>
+        <div class="otp-fields">
+          <input type="text" class="otp-input" name="inputMobileNumber1" autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber1" ngModel="InputMobileNumber1">
+          <input type="text" class="otp-input" name="inputMobileNumber2"  autocomplete="off"  maxlength="1" [(ngModel)]="inputMobileNumber2" ngModel="inputMobileNumber2">
+          <input type="text" class="otp-input " name="inputMobileNumber3"  autocomplete="off"  maxlength="1" [(ngModel)]="inputMobileNumber3" ngModel="inputMobileNumber3">
+          <input type="text" class="otp-input " name="inputMobileNumber4"  autocomplete="off"  maxlength="1" [(ngModel)]="inputMobileNumber4" ngModel="inputMobileNumber4">
+          <input type="text" class="otp-input " name="inputMobileNumber5"   autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber5" ngModel="inputMobileNumber5">
+          <input type="text" class="otp-input " name="inputMobileNumber6"   autocomplete="off" maxlength="1"  [(ngModel)]="inputMobileNumber6" ngModel="inputMobileNumber6">
+        </div>
+
+        <p style="place-self: center;">Enter the OTP</p>
+        <button class="submitbuton" [disabled]="logged" (click)="handleLogin()">
+          Login
+        </button>
+      </form>
+      <div>
+        
+      
+          
+          
+      
+       
+      
+    
+
+    </div>

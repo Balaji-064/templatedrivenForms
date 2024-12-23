@@ -20,13 +20,13 @@ button{
 }
 table{
     border: solid 1px;
-    text-align: ce
+    
+    border-collapse: collapse;
 }
-th{
-    border: solid 1px;
-}
-td{
-    border: solid  red 1px;
+th,td{
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
 }
 .centeralign{
     align-items: center;
@@ -38,8 +38,11 @@ ul{
     list-style: none;
     flex-direction: row;
     display: flex;
+
 }
 li{
     border:solid 1px;
     gap:10px;
+    color: aqua;
+
 }

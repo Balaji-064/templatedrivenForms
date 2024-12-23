@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { FormsComponent } from './forms/forms.component';
 import { FormsModule } from '@angular/forms';
 import { BillsComponent } from './bills/bills.component';
+import { GenratebillComponent } from './genratebill/genratebill.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormsComponent,
-    BillsComponent
+    BillsComponent,
+    GenratebillComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

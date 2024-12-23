@@ -29,24 +29,27 @@ export class FormsComponent {
     let addMore = "Y";
 
     while (addMore.toUpperCase() === "Y") {
-      const itemId = parseInt(prompt("Enter item id:")!);
+      // const itemId = parseInt(prompt("Enter item id:")!);
+       const inputItemId=document.getElementById('userinput') as HTMLInputElement 
+       const inputItemNumber=parseInt(inputItemId.value);
 
       console.log(this.AddedItems)
-      const quantity = parseInt(prompt("Enter quantity:")!);
-      
+      // const quantity = parseInt(prompt("Enter quantity:")!);
+      const quantity=document.getElementById('inputQuantity') as HTMLInputElement 
+      const inputquantity=parseInt(quantity.value);
       console.log(this.AddedItems)
 
-      if (prices[itemId!]) {
-        let itemCost = prices[itemId] * quantity;
+      if (prices[inputItemNumber]) {
+        let itemCost = prices[inputItemNumber] * inputquantity;
         this.AddedItems.push({
-          items: itemId,
-          quantity: quantity,
+          items: inputItemNumber,
+          quantity: inputquantity,
           itemcost:itemCost
       
         })
 
 
-        if (discountItems.includes(itemId)) {
+        if (discountItems.includes(inputItemNumber)) {
           itemCost = itemCost * 0.8;
         }
 
@@ -56,7 +59,9 @@ export class FormsComponent {
       }
 
       console.log(`Total Bill: ${this.totalBill}`);
-      addMore = prompt("Enter Y to continue or N to stop:")!;
+      const addMoreInput = document.getElementById('addMoreItem') as HTMLInputElement;
+
+      addMore=addMoreInput.value
     }
 
 

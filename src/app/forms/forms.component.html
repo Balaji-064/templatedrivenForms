@@ -1,124 +1,102 @@
 
 
-<h1>Your Bill Amount</h1>
+<h1>Our Products</h1>
 <div class="centeralign">
 <table>
     <th>
+        
         itemid
         cost
     </th>
     <tr>
+        <td>
         5001
-        Rs.20
+        Rs.20</td>
     </tr>
     <tr>
+        <td>
         5002
         Rs.25
+        </td>
     </tr>
     <tr>
+        <td>
         5003
         Rs.30
+    </td>
     </tr>
     </table>
     
     <table> 
         <p>discounted products</p>
 
-        <tr>
+        <tr><td>
             itemid
             cost
-           
+            Discount
+           </td>
         </tr>
-    <td>
+    <tr><td>
         5004
         Rs.40
-    </td>
-    <tr>
-        5005
-        Rs.50
+        20%
+        </td>
     </tr>
+    <tr>
+        <td>   5005
+            Rs.50
+            20%</td>
+     
+    </tr>
+  
     
 </table>
 </div>
 <br>
 <br>
-<form  class="amountCalculation"#forms="ngForm" (ngSubmit)="calculateTotalBill(forms)">
+<form  class="amountCalculation"#forms="ngForm"  (ngSubmit)="calculateTotalBill(forms)">
+    <div>
+    <label class="form-label" for="itemId"> Itemid</label><br>
+
+    <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="userinput" #itemid="ngModel"name="itemid" ngModel />
+    <br>
+    <span *ngIf="itemid.invalid && itemid.touched" class="erroemessage">Enter valid data</span>
+</div>
+<div>
+    <label class="form-label" for="quantity"> Quantity</label><br>
+    
+    <input required minlength="1" maxlength="3" class="form-control" type="number" autocomplete="off" id="inputQuantity" #quantity="ngModel"name="quantity"ngModel />
+    <br>
+    <span *ngIf="quantity.invalid && quantity.dirty" class="erroemessage">Enter valid data</span>
+</div>
+<div>
+    <label class="form-label" for="add">add </label><br>
+    <input required minlength="1" class="form-control" type="text" id="addMoreItem"autocomplete="off" #add="ngModel" name="add" ngModel />
+    <br>
+    <span *ngIf="add.invalid && add.touched" class="erroemessage">Enter valid data</span>
+    <br>
+</div>
+
 
     <div>
+        
         <button type="submit" [disabled]="!forms.valid">Shop now</button>
     </div>
 </form>
 
 <ul *ngFor="let product of AddedItems;let i=index">
-<li>{{i+1}}</li>
-<li>{{product.items}}</li>
-<li>{{product.quantity}}</li>
-<li>{{product.itemcost}}</li>
+<table>
+    
+    <td>{{i+1}}</td>
+    
+<th>items id</th>
+    <td>{{product.items}}</td>
+<th> quantity</th>
+<td>{{product.quantity}}</td>
+<th> item cost</th>
+<td>{{product.itemcost}}</td>
 
+<div>
 
-
-
-</ul>
 <p>Your bill Amount is Rs:{{totalBill}} only/-</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div>
-        <label class="form-label" for="itemId"> Itemid</label><br>
- 
-        <input required maxlength="4" class="form-control" type="number" autocomplete="off" #itemid="ngModel"name="itemid" ngModel />
-        <br>
-        <span *ngIf="itemid.invalid && itemid.touched" class="erroemessage">Enter valid data</span>
-    </div>
-    <div>
-        <label class="form-label" for="quantity"> Quantity</label><br>
-        
-        <input required minlength="1" maxlength="3" class="form-control" type="number" autocomplete="off" #quantity="ngModel"name="quantity"ngModel />
-        <br>
-        <span *ngIf="quantity.invalid && quantity.dirty" class="erroemessage">Enter valid data</span>
-    </div>
-    <div>
-        <label class="form-label" for="add">add </label><br>
-        <input required minlength="1" class="form-control" type="text" autocomplete="off" #add="ngModel" name="add" ngModel />
-        <br>
-        <span *ngIf="add.invalid && add.touched" class="erroemessage">Enter valid data</span>
-        <br>
-    </div> -->
+</div>

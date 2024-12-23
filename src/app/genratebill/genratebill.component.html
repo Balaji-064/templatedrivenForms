@@ -1,0 +1,89 @@
+<div class="Displaycenter">
+    <h1>Our Products</h1> 
+    
+    Search Bar for filtering products
+    <div class="search-container">
+        <label for="search" class="form-label">Search Products</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="search" 
+            [(ngModel)]="searchQuery" 
+            placeholder="Search by Item Name or ID"
+        />
+    </div>
+    <br>
+
+    
+    <div class="viewProduct">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item ID</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through filtered products and display them -->
+                <tr *ngFor="let product of filteredProducts()">
+                    <td>{{product.name}}</td>
+                    <td>{{product.id}}</td>
+                    <td>Rs:{{product.cost}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- The rest of your form and product interaction code follows... -->
+     <form class="amountCalculation" #forms="ngForm">
+        <div>
+            <label class="form-label" for="itemId">Item ID</label><br>
+            <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="userinput"
+                #itemid="ngModel" name="itemid" ngModel />
+            <br>
+            <span *ngIf="errormessage1" class="erroemessage">{{errormessage1}}</span>
+        </div>
+        <div>
+            <label class="form-label" for="quantity">Quantity</label><br>
+            <input required minlength="1" maxlength="3" class="form-control" type="number" autocomplete="off"
+                id="inputQuantity" #quantity="ngModel" name="quantity" ngModel />
+            <br>
+            <span *ngIf="errormessage" class="erroemessage">{{errormessage}}</span>
+        </div>
+        <div>
+            <button (click)="add(forms)">Add More</button>
+            <button (click)="showBill()">Shop Now</button>
+        </div>
+    </form> 
+
+    <!-- Display Added Items Table -->
+      <table *ngIf="AddedItems.length > 0">
+        <tr>
+            <th>S. No</th>
+            <th>Item ID</th>
+            <th>Quantity</th>
+            <th>Item Cost</th>
+        </tr>
+        <tr *ngFor="let product of AddedItems; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{product.items}}</td>
+            <td style="text-align: center;">{{product.quantity}}</td>
+            <td>{{product.itemcost}}</td>
+        </tr>
+    </table>
+
+    <br>
+    <div *ngIf="isShowBill">
+        <p>Your bill amount: {{totalBill}}/-</p>
+        <div><label class="form-label" for="itemId">Enter your amount</label><br>
+            <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="validateamount"
+                [(ngModel)]="amount" />
+        </div>
+        <button (click)="balanceamount()">Calculate</button>
+        <h2>Amount Received: {{amount}}</h2>
+        <h2>Your Bill Amount: {{totalBill}}</h2>
+        <h2>Your Balance: {{remindtopay}}</h2>
+    </div>
+</div>
+
