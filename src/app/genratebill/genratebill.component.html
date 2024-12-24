@@ -1,89 +1,128 @@
-<div class="Displaycenter">
-    <h1>Our Products</h1> 
-    
-    Search Bar for filtering products
-    <div class="search-container">
-        <label for="search" class="form-label">Search Products</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="search" 
-            [(ngModel)]="searchQuery" 
-            placeholder="Search by Item Name or ID"
-        />
-    </div>
-    <br>
 
-    
-    <div class="viewProduct">
-        <table>
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Item ID</th>
-                    <th>Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Loop through filtered products and display them -->
-                <tr *ngFor="let product of filteredProducts()">
-                    <td>{{product.name}}</td>
-                    <td>{{product.id}}</td>
-                    <td>Rs:{{product.cost}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<h1>Our Products</h1>
 
-    <!-- The rest of your form and product interaction code follows... -->
-     <form class="amountCalculation" #forms="ngForm">
-        <div>
-            <label class="form-label" for="itemId">Item ID</label><br>
-            <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="userinput"
-                #itemid="ngModel" name="itemid" ngModel />
-            <br>
-            <span *ngIf="errormessage1" class="erroemessage">{{errormessage1}}</span>
-        </div>
-        <div>
-            <label class="form-label" for="quantity">Quantity</label><br>
-            <input required minlength="1" maxlength="3" class="form-control" type="number" autocomplete="off"
-                id="inputQuantity" #quantity="ngModel" name="quantity" ngModel />
-            <br>
-            <span *ngIf="errormessage" class="erroemessage">{{errormessage}}</span>
-        </div>
-        <div>
-            <button (click)="add(forms)">Add More</button>
-            <button (click)="showBill()">Shop Now</button>
-        </div>
-    </form> 
+<div class="centeralign">
+  <!-- Search Input -->
+  <div>
+    <label for="searchInput">Search Items:</label>
+    <input 
+      type="text" 
+      id="searchInput" 
+      [(ngModel)]="searchQuery" 
+      placeholder="Search by Item ID or Name" 
+      class="form-control"
+    />
+  </div>
 
-    <!-- Display Added Items Table -->
-      <table *ngIf="AddedItems.length > 0">
-        <tr>
-            <th>S. No</th>
-            <th>Item ID</th>
-            <th>Quantity</th>
-            <th>Item Cost</th>
-        </tr>
-        <tr *ngFor="let product of AddedItems; let i = index">
-            <td>{{i + 1}}</td>
-            <td>{{product.items}}</td>
-            <td style="text-align: center;">{{product.quantity}}</td>
-            <td>{{product.itemcost}}</td>
-        </tr>
-    </table>
+  <!-- Available Products Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Item ID</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts()">
+        <td>{{product.itemid}}</td>
+        <td>{{product.cost}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <br>
-    <div *ngIf="isShowBill">
-        <p>Your bill amount: {{totalBill}}/-</p>
-        <div><label class="form-label" for="itemId">Enter your amount</label><br>
-            <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="validateamount"
-                [(ngModel)]="amount" />
-        </div>
-        <button (click)="balanceamount()">Calculate</button>
-        <h2>Amount Received: {{amount}}</h2>
-        <h2>Your Bill Amount: {{totalBill}}</h2>
-        <h2>Your Balance: {{remindtopay}}</h2>
-    </div>
+  <!-- Discounted Products Table -->
+  <table>
+    <p>Discounted Products</p>
+    <thead>
+      <tr>
+        <th>Item ID</th>
+        <th>Cost</th>
+        <th>Discount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let discountedProduct of filteredDiscountedProducts()">
+        <td>{{discountedProduct.itemid}}</td>
+        <td>{{discountedProduct.cost}}</td>
+        <td>{{discountedProduct.discount}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+<br>
+<br>
+
+<form  class="amountCalculation" #forms="ngForm"  (ngSubmit)="calculateTotalBill(forms)">
+  <div>
+    <label class="form-label" for="itemId">Item ID</label><br>
+    <input 
+      required 
+      maxlength="4" 
+      class="form-control" 
+      type="number" 
+      autocomplete="off" 
+      id="userinput" 
+      #itemid="ngModel"
+      name="itemid" 
+      ngModel 
+    />
+    <br>
+    <span *ngIf="itemid.invalid && itemid.touched" class="erroemessage">Enter valid data</span>
+  </div>
+  <div>
+    <label class="form-label" for="quantity">Quantity</label><br>
+    <input 
+      required 
+      minlength="1" 
+      maxlength="3" 
+      class="form-control" 
+      type="number" 
+      autocomplete="off" 
+      id="inputQuantity" 
+      #quantity="ngModel"
+      name="quantity" 
+      ngModel 
+    />
+    <br>
+    <span *ngIf="quantity.invalid && quantity.dirty" class="erroemessage">Enter valid data</span>
+  </div>
+  <div>
+    <label class="form-label" for="add">Add</label><br>
+    <input 
+      required 
+      minlength="1" 
+      class="form-control" 
+      type="text" 
+      id="addMoreItem" 
+      autocomplete="off" 
+      #add="ngModel" 
+      name="add" 
+      ngModel 
+    />
+    <br>
+    <span *ngIf="add.invalid && add.touched" class="erroemessage">Enter valid data</span>
+    <br>
+  </div>
+  <div>
+    <button type="submit" [disabled]="!forms.valid">Shop now</button>
+  </div>
+</form>
+
+<ul *ngFor="let product of AddedItems;let i=index">
+  <table>
+    <tr>
+      <td>{{i+1}}</td>
+      <th>Item ID</th>
+      <td>{{product.items}}</td>
+      <th>Quantity</th>
+      <td>{{product.quantity}}</td>
+      <th>Item Cost</th>
+      <td>{{product.itemcost}}</td>
+    </tr>
+  </table>
+
+  <div>
+    <p>Your bill Amount is Rs:{{totalBill}} only/-</p>
+  </div>
+</ul>

@@ -1,44 +1,39 @@
 <h1>Welcome to shops</h1>
-<form class="loginForm" #forms="ngForm">
+<form class="loginForm" #forms="ngForm" (ngSubmit)="handleLogin( )">
   <div>
     <div class="formslog">
       <label class="form-label" for="mobilenumber">Mobilenumber:</label>
-
       <input required minlength="10" maxlength="10" class="form-control" type="text" autocomplete="off" id="userinput"
-        #itemid="ngModel" name="itemid" ngModel />
-
-
-      <button id="otpbutton" (click)="MobileNumber()">get otp</button><br>
-
-      <span *ngIf="valid">{{errormessage}}</span>
-
-
-
+        [(ngModel)]="itemid" #itemId="ngModel" name="itemid" ngModel />
+      <button id="otpbutton" (click)="MobileNumber(forms)">get otp</button><br>
+      <p style="place-self: center;">{{errormessages}}</p>
     </div>
     <div>
-      <form>
-        <div class="otp-fields">
-          <input type="text" class="otp-input" name="inputMobileNumber1" autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber1" ngModel="InputMobileNumber1">
-          <input type="text" class="otp-input" name="inputMobileNumber2"  autocomplete="off"  maxlength="1" [(ngModel)]="inputMobileNumber2" ngModel="inputMobileNumber2">
-          <input type="text" class="otp-input " name="inputMobileNumber3"  autocomplete="off"  maxlength="1" [(ngModel)]="inputMobileNumber3" ngModel="inputMobileNumber3">
-          <input type="text" class="otp-input " name="inputMobileNumber4"  autocomplete="off"  maxlength="1" [(ngModel)]="inputMobileNumber4" ngModel="inputMobileNumber4">
-          <input type="text" class="otp-input " name="inputMobileNumber5"   autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber5" ngModel="inputMobileNumber5">
-          <input type="text" class="otp-input " name="inputMobileNumber6"   autocomplete="off" maxlength="1"  [(ngModel)]="inputMobileNumber6" ngModel="inputMobileNumber6">
-        </div>
-
-        <p style="place-self: center;">Enter the OTP</p>
-        <button class="submitbuton" [disabled]="logged" (click)="handleLogin()">
-          Login
-        </button>
-      </form>
-      <div>
-        
-      
-          
-          
-      
-       
-      
-    
-
+      <div class="otp-fields">
+        <input type="text" class="otp-input" id="input1" name="inputMobileNumber1"
+        [disabled]="itemId.invalid || false" autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber1"
+          ngModel="InputMobileNumber1" (input)="onOtpInput($event, 'input2')">
+        <input type="text" class="otp-input" id="input2" name="inputMobileNumber2"
+        [disabled]="itemId.invalid || false"autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber2"
+          ngModel="inputMobileNumber2" (input)="onOtpInput($event, 'input3')">
+        <input type="text" class="otp-input " id="input3" name="inputMobileNumber3"
+        [disabled]="itemId.invalid || false" autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber3"
+          ngModel="inputMobileNumber3" (input)="onOtpInput($event, 'input4')">
+        <input type="text" class="otp-input " id="input4" name="inputMobileNumber4"
+        [disabled]="itemId.invalid || false"autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber4"
+          ngModel="inputMobileNumber4" (input)="onOtpInput($event, 'input5')">
+        <input type="text" class="otp-input " id="input5" name="inputMobileNumber5"
+        [disabled]="itemId.invalid || false"autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber5"
+          ngModel="inputMobileNumber5" (input)="onOtpInput($event, 'input6')">
+        <input type="text" class="otp-input " id="input6" name="inputMobileNumber6"
+        [disabled]="itemId.invalid || false" autocomplete="off" maxlength="1" [(ngModel)]="inputMobileNumber6"
+          ngModel="inputMobileNumber6" (input)="onOtpInput($event, '')">
+      </div>
+      <p style="place-self: center;">{{errormessage}}</p>
+      <p style="place-self: center;">Enter the OTP</p>
+      <button class="submitbuton" (click)="handleLogin()">
+        Login
+      </button>
     </div>
+  </div>
+</form>

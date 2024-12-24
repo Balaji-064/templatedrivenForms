@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +9,11 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent {
 
-  constructor(private router : Router){}
+  constructor(private router: Router) { }
   otp: string = "234561"
   /*     otpFields: string[] = [];*/
-  errormessage = ""
+  itemid!: number
+  errormessages = ""
   // Store OTP values as a string array
   inputMobileNumber1!: string
   inputMobileNumber2!: string
@@ -21,20 +23,20 @@ export class LoginFormComponent {
   inputMobileNumber6!: string
   logged: boolean = false;
 
-
+  errormessage = ""
   handleLogin() {
     let otp: string = '';
-    
+
     // Check if all fields are filled
     if (!(this.inputMobileNumber1 && this.inputMobileNumber2 && this.inputMobileNumber3 && this.inputMobileNumber4 && this.inputMobileNumber5 && this.inputMobileNumber6)) {
       this.errormessage = "Please enter all OTP fields.";
       console.log("Value error");
-      return
     }
-    
-    // Concatenate the input fields into one OTP string
-    otp = this.inputMobileNumber1.toString() + this.inputMobileNumber2.toString() + this.inputMobileNumber3.toString() + this.inputMobileNumber4.toString() + this.inputMobileNumber5.toString() + this.inputMobileNumber6.toString();
-    
+    else{
+      otp = this.inputMobileNumber1.toString() + this.inputMobileNumber2.toString() + this.inputMobileNumber3.toString() + this.inputMobileNumber4.toString() + this.inputMobileNumber5.toString() + this.inputMobileNumber6.toString();
+      console.log("Valid OTP");
+      
+    }
     // Validate the OTP
     if (otp === this.otp) {
       this.logged = !this.logged;  // Toggle login status
@@ -47,8 +49,8 @@ export class LoginFormComponent {
       this.clearFields();  // Clear fields on failed attempt to prevent reuse
     }
   }
-  
-  // Optional: Function to clear the OTP fields
+
+
   clearFields() {
     this.inputMobileNumber1 = '';
     this.inputMobileNumber2 = '';
@@ -57,33 +59,44 @@ export class LoginFormComponent {
     this.inputMobileNumber5 = '';
     this.inputMobileNumber6 = '';
   }
-  showAlert() {
 
-    alert("  OTP 2 3 4 5 6 1");
-  }
   valid = false
-  MobileNumber() {
+
+
+  MobileNumber(form: NgForm) {
     const inputMobileNumber = document.getElementById('userinput') as HTMLInputElement
-    const inputNumber = parseInt(inputMobileNumber.value);
-    if (inputNumber.toString().length < 10) {
+    const inputNumber = inputMobileNumber.value;
+    console.log("Hi");
+    
+    if (inputNumber.length < 10) {
       this.valid = true
-      this.errormessage = "enter 10 digit number"
+      this.errormessages = "enter 10 digit number"
+      console.log("Error");
     }
     else {
-      this.valid = false
-      this.showAlert()
+      this.valid = true
+      alert("  OTP 2 3 4 5 6 1");
+      console.log(form)
     }
 
   }
   onSubmit(form: any) {
-  if (form.valid) {
-    console.log('OTP is valid:', this.otp);
-  } else {
-    console.log('Form is invalid');
+    if (form.valid) {
+      console.log('OTP is valid:', this.otp);
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+  onOtpInput(event: any, nextInput: string) {
+
+    if (event.target.value.length === 1) {
+      const nextElement = document.getElementById(nextInput) as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
+    }
+
+
   }
 }
-
-
-}
-
 

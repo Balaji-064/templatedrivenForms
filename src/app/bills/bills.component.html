@@ -5,6 +5,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>item</th>
                     <th>item name</th>
                     <th>item id</th>
                     <th> cost</th>
@@ -12,17 +13,20 @@
             </thead>
             <tbody>
                 <tr>
+                    <td><img src="../../assets/lays.jpg" alt=""></td>
                     <td> lays</td>
                     <td>5001</td>
                     <td>Rs:20</td>
                 </tr>
                 <tr>
-                    <td>bingo</td>
+                    <td><img src="../../assets/pencilbbox.jpg" alt=""></td>
+                    <td>pencilbox</td>
                     <td>5002</td>
                     <td>Rs:25</td>
                 </tr>
                 <tr>
-                    <td>kurkurec</td>
+                    <td><img src="../../assets/pen.jpg" alt=""></td>
+                    <td>pen</td>
                     <td>5003</td>
                     <td>Rs:30</td>
                 </tr>
@@ -30,23 +34,27 @@
         </table>
 
 
-
+        <h1>Our discounted products</h1>
         <table>
             <thead>
                 <tr>
+                    <th>Item</th>
                     <th>item name</th>
                     <th>itemid</th>
                     <th> cost</th>
                 </tr>
             </thead>
+
             <tbody>
                 <tr>
-                    <td>Kitkat</td>
+                    <td><img src="../../assets/geometricbox.jpg" alt=""></td>
+                    <td>geometricbox</td>
                     <td>5004</td>
                     <td>Rs:40</td>
                 </tr>
                 <tr>
-                    <td>DairyMilk</td>
+                    <td><img src="../../assets/bottle.jpg" alt=""></td>
+                    <td>Water Bottle</td>
                     <td>5005</td>
                     <td>Rs:50</td>
                 </tr>
@@ -59,7 +67,7 @@
 
     <form class="amountCalculation" #forms="ngForm">
         <div>
-            <label class="form-label" for="itemId"> Itemid</label><br>
+            <label class="form-label" for="itemId"> Itemid :</label><br>
 
             <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="userinput"
                 #itemid="ngModel" name="itemid" ngModel />
@@ -67,7 +75,7 @@
             <span *ngIf="errormessage1 " class="erroemessage">{{errormessage1}}</span>
         </div>
         <div>
-            <label class="form-label" for="quantity"> Quantity</label><br>
+            <label class="form-label" for="quantity"> Quantity :</label><br>
 
             <input required minlength="1" maxlength="3" class="form-control" type="number" autocomplete="off"
                 id="inputQuantity" #quantity="ngModel" name="quantity" ngModel />
@@ -76,38 +84,41 @@
         </div>
 
 
+        <br>
+        <div class="seperate">
+            <button (click)="add(forms)" class="addMoreButton"> AddMore</button>
 
-        <div>
-            <button (click)="add(forms)"> AddMore</button>
-
-            <button (click)="showBill()">Shop now</button>
+            <button (click)="showBill()" class="shopNowButton">Shop now</button>
         </div>
     </form>
-    <table *ngIf="AddedItems.length>0">
-        <tr>
-            <th>S. No</th>
+    <div class="displayItems">
+        <table *ngIf="AddedItems.length>0">
+            <tr>
+                <th>S. No</th>
 
-            <th>items id</th>
-            <th> quantity</th>
-            <th> item cost</th>
-        </tr>
-        <tr *ngFor="let product of AddedItems;let i=index">
-            <td>{{i+1}}</td>
-            <td>{{product.items}}</td>
-            <td style="text-align: center;">{{product.quantity}}</td>
-            <td>{{product.itemcost}}</td>
-        </tr>
-    </table>
+                <th>items id</th>
+                <th> quantity</th>
+                <th> item cost</th>
+            </tr>
+            <tr *ngFor="let product of AddedItems;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{product.items}}</td>
+                <td style="text-align: center;">{{product.quantity}}</td>
+                <td>{{product.itemcost}}</td>
+            </tr>
+        </table>
+    </div>
     <br>
     <div *ngIf="isShowBill">
-        <p>your billAmount only{{totalBill}}/-</p>
+        <h1>your billAmount only{{totalBill}}/-</h1>
         <div><label class="form-label" for="itemId"> Enter your amount</label><br>
 
-            <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="validateamount"
-                #itemid="ngModel" name="itemid" ngModel /></div>
-                <button (click)="balanceamount()">calculate</button>
-                <h2>amount recieved: {{amount}}</h2>
-                <h2>Your billamount: {{totalBill}}</h2>
-                <h2>Your Balance :{{remindtopay}}</h2>
+            <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="amount"
+                #itemid="ngModel" name="itemid" ngModel />
+        </div>
+        <button (click)="balanceamount()">calculate</button>
+        <h2>amount recieved: {{amount}}</h2>
+        <h2>Your billamount: {{totalBill}}</h2>
+        <h2>Your Balance :{{remindtopay}}</h2>
     </div>
 </div>

@@ -1,20 +1,170 @@
-.search-container {
-    margin-bottom: 20px;
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: #2c3e50;
+}
+
+/* Center alignment for the content */
+.centeralign {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Styling for search bar */
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#searchInput:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: bold;
+}
+
+td {
+  background-color: #f9f9f9;
+}
+
+table tr:nth-child(even) td {
+  background-color: #f1f1f1;
+}
+
+table p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+/* Form Styles */
+form {
+  margin-top: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+input.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input.form-control:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #bbb;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Error Message Styling */
+.erroemessage {
+  color: red;
+  font-size: 12px;
+}
+
+/* Table for Added Items */
+ul {
+  margin-top: 20px;
+  padding: 0;
+}
+
+ul table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+ul td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+ul th {
+  text-align: center;
+}
+
+/* Total Bill Section */
+div p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #e74c3c;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .centeralign {
+    width: 90%;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
+
   table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    font-size: 14px;
   }
-  
-  .erroemessage {
-    color: red;
-    font-size: 12px;
+
+  input.form-control {
+    font-size: 14px;
   }
-  
+
+  button {
+    font-size: 14px;
+  }
+}

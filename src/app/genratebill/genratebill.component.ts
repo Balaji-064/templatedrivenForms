@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-genratebill',
@@ -6,84 +7,170 @@ import { Component } from '@angular/core';
   styleUrls: ['./genratebill.component.css']
 })
 export class GenratebillComponent {
-  products = [
-    { name: 'Lays', id: 5001, cost: 20 },
-    { name: 'Bingo', id: 5002, cost: 25 },
-    { name: 'Kurkure', id: 5003, cost: 30 },
-    { name: 'Kitkat', id: 5004, cost: 40 },
-    { name: 'DairyMilk', id: 5005, cost: 50 }
-  ];
+//   searchQuery: string = '';  // This will hold the search query
+//   products = [
+//     { itemid: 5001, cost: 'Rs.20' },
+//     { itemid: 5002, cost: 'Rs.25' },
+//     { itemid: 5003, cost: 'Rs.30' }
+//   ];
+//   discountedProducts = [
+//     { itemid: 5004, cost: 'Rs.40', discount: '20%' },
+//     { itemid: 5005, cost: 'Rs.50', discount: '20%' }
+//   ];
+//   AddedItems = [
+//     { items: 5001, quantity: 2, itemcost: 'Rs.40' },
+//     { items: 5002, quantity: 1, itemcost: 'Rs.25' }
+//   ];
+//   totalBill: number = 0;
 
-  // Variables for form inputs
-  itemId!: number;
-  quantity!: number;
-  AddedItems: any[] = [];
-  totalBill: number = 0;
-  amount: number = 0;
-  remindtopay: number = 0;
+//   // Filtered products based on the search query
+//   filteredProducts() {
+//     return this.products.filter(product =>
+//       product.itemid.toString().includes(this.searchQuery) || 
+//       product.cost.toLowerCase().includes(this.searchQuery.toLowerCase())
+//     );
+//   }
 
-  // Error messages
-  errormessage: string = '';
-  errormessage1: string = '';
+//   // Filtered discounted products based on the search query
+//   filteredDiscountedProducts() {
+//     return this.discountedProducts.filter(discountedProduct =>
+//       discountedProduct.itemid.toString().includes(this.searchQuery) || 
+//       discountedProduct.cost.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+//       discountedProduct.discount.toLowerCase().includes(this.searchQuery.toLowerCase())
+//     );
+//   }
 
-  // Show bill toggle
-  isShowBill: boolean = false;
+//   // Method to calculate the total bill (this is just an example, adjust as needed)
+//   calculateTotalBill(forms:NgForm) {
+//     this.totalBill = 0;
+//     this.AddedItems.forEach(item => {
+//       // Assuming each item's itemcost is a string in 'Rs.XX' format, remove the 'Rs.' part and convert to number
+//       const cost = parseFloat(item.itemcost.replace('Rs.', ''));
+//       this.totalBill += cost * item.quantity;
+//     });
+//   }
+// }
 
-  // Search query
-  searchQuery: string = '';
+products = [
+      { itemid: 5001, cost: 'Rs.20' },
+      { itemid: 5002, cost: 'Rs.25' },
+      { itemid: 5003, cost: 'Rs.30' }
+    ];
+    discountedProducts = [
+          { itemid: 5004, cost: 'Rs.40', discount: '20%' },
+          { itemid: 5005, cost: 'Rs.50', discount: '20%' }
+        ];
 
-  // Method to filter products based on the search query
-  filteredProducts() {
-    if (!this.searchQuery) {
-      return this.products;
-    }
-    const query = this.searchQuery.toLowerCase();
-    return this.products.filter(product =>
-      product.name.toLowerCase().includes(query) || product.id.toString().includes(query)
-    );
+price: {} = {}
+
+AddedItems: {
+  items: number,
+  quantity: number,
+  itemcost: number,
+  totalBill: number
+}[] = []
+discountItems = [5004, 5005];
+totalBill = 0;
+errormessage = ""
+errormessage1 = ""
+
+isShowBill = false
+amount!: number
+
+remindtopay!: number
+
+// isDataAvail = this.prices[]
+
+add(form: NgForm) {
+  const inputItemId = document.getElementById('userinput') as HTMLInputElement
+  const inputItemNumber = parseInt(inputItemId.value);
+  if (!this.products[inputItemNumber]) {
+    this.errormessage1 = "id not found"
+
+  }
+  
+  const quantity = document.getElementById('inputQuantity') as HTMLInputElement
+  const inputquantity = parseInt(quantity.value);
+  if (inputquantity < 1) {
+    this.errormessage = "Atleast enter 1 item"
+    return
+
   }
 
-  // Add item to the cart
-  add(forms: any) {
-    const selectedProduct = this.products.find(product => product.id === this.itemId);
+  if (this.products[inputItemNumber]) {
+    let itemCost= inputItemNumber * inputquantity;
 
-    if (!selectedProduct) {
-      this.errormessage1 = 'Invalid Item ID';
-      return;
+
+
+    if (this.discountItems.includes(inputItemNumber)) {
+      itemCost = itemCost * 0.8;
     }
 
-    if (this.quantity <= 0 || this.quantity > 100) {
-      this.errormessage = 'Quantity should be between 1 and 100';
-      return;
-    }
+
+    this.totalBill += itemCost;
 
     this.AddedItems.push({
-      items: this.itemId,
-      quantity: this.quantity,
-      itemcost: selectedProduct.cost * this.quantity
-    });
+      items: inputItemNumber,
+      quantity: inputquantity,
+      itemcost: itemCost,
+      totalBill: this.totalBill
 
-    this.errormessage1 = '';
-    this.errormessage = '';
 
-    this.itemId = 0;
-    this.quantity = 0;
+    })
+  } else {
+    console.log("Invalid item id entered!");
+  }
+  if (this.totalBill > 1000) {
+    this.totalBill = this.totalBill * 0.8
+  }
+  console.log(`Total Bill: ${this.totalBill}`);
+
+
+
+
+  form.form.reset()
+
+
+}
+balanceamount() {
+  const valid = document.getElementById('amount') as HTMLInputElement
+  
+  this.amount = parseInt(valid.value);
+  console.log(this.amount,typeof(this.amount));
+ if (this.amount > this.totalBill) {
+    this.remindtopay = (this.amount - this.totalBill)
+
   }
 
-  // Show the total bill after adding items
-  showBill() {
-    this.totalBill = this.AddedItems.reduce((total, item) => total + item.itemcost, 0);
-    this.isShowBill = true;
-  }
-
-  // Calculate balance amount after payment
-  balanceamount() {
-    if (this.amount >= this.totalBill) {
-      this.remindtopay = 0;
-    } else {
-      this.remindtopay = this.totalBill - this.amount;
-    }
-  }
 }
 
-
+showBill() {
+  this.isShowBill = true
+}
+searchQuery: string = '';
+filteredProducts() {
+      return this.products.filter(product =>
+        product.itemid.toString().includes(this.searchQuery) || 
+        product.cost.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+  
+    // Filtered discounted products based on the search query
+    filteredDiscountedProducts() {
+      return this.discountedProducts.filter(discountedProduct =>
+        discountedProduct.itemid.toString().includes(this.searchQuery) || 
+        discountedProduct.cost.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+        discountedProduct.discount.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+  
+    // Method to calculate the total bill (this is just an example, adjust as needed)
+    calculateTotalBill(forms:NgForm) {
+      this.totalBill = 0;
+      this.AddedItems.forEach(item => {
+        // Assuming each item's itemcost is a string in 'Rs.XX' format, remove the 'Rs.' part and convert to number
+        const cost = Number(item.itemcost);
+        this.totalBill += cost * item.quantity;
+      });
+    }
+  }

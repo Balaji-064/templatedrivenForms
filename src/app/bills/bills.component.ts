@@ -9,14 +9,14 @@ import { NgForm } from '@angular/forms';
 })
 export class BillsComponent {
   prices: { [key: number]: number } = {
-    
+
     5001: 20,
     5002: 25,
     5003: 30,
     5004: 40,
     5005: 50
   };
-  price:{}={}
+  price: {} = {}
 
   AddedItems: {
     items: number,
@@ -28,12 +28,14 @@ export class BillsComponent {
   totalBill = 0;
   errormessage = ""
   errormessage1 = ""
+ 
   isShowBill = false
   amount!: number
 
   remindtopay!: number
 
   // isDataAvail = this.prices[]
+
   add(form: NgForm) {
     const inputItemId = document.getElementById('userinput') as HTMLInputElement
     const inputItemNumber = parseInt(inputItemId.value);
@@ -86,9 +88,11 @@ export class BillsComponent {
 
   }
   balanceamount() {
-    const valid = document.getElementById('validateamount') as HTMLInputElement
+    const valid = document.getElementById('amount') as HTMLInputElement
+    
     this.amount = parseInt(valid.value);
-    if (this.amount > this.totalBill) {
+    console.log(this.amount,typeof(this.amount));
+   if (this.amount > this.totalBill) {
       this.remindtopay = (this.amount - this.totalBill)
 
     }
@@ -99,14 +103,14 @@ export class BillsComponent {
     this.isShowBill = true
   }
   searchQuery: string = '';
-//   filteredProducts() {
-//     if (!this.searchQuery) {
-//       return this.AddedItems;
-//     }
-//     const query = this.searchQuery.toLowerCase();
-//     return this.AddedItems.filter(product =>
-//       product.id.includes(query) || product.id.toString().includes(query)
-//     );
-//   }
-// }
+  //   filteredProducts() {
+  //     if (!this.searchQuery) {
+  //       return this.AddedItems;
+  //     }
+  //     const query = this.searchQuery.toLowerCase();
+  //     return this.AddedItems.filter(product =>
+  //       product.id.includes(query) || product.id.toString().includes(query)
+  //     );
+  //   }
+  // }
 }

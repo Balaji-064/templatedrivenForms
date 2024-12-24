@@ -1,59 +1,56 @@
-
+<!-- 
 
 <h1>Our Products</h1>
 <div class="centeralign">
-<table>
-    <th>
-        
-        itemid
-        cost
-    </th>
-    <tr>
-        <td>
-        5001
-        Rs.20</td>
-    </tr>
-    <tr>
-        <td>
-        5002
-        Rs.25
-        </td>
-    </tr>
-    <tr>
-        <td>
-        5003
-        Rs.30
-    </td>
-    </tr>
-    </table>
+    <div>
+        <label for="searchInput">Search Items:</label>
+        <input 
+          type="text" 
+          id="searchInput" 
+          [(ngModel)]="searchQuery" 
+          placeholder="Search by Item ID or Name" 
+          class="form-control"
+        />
+      </div>
     
-    <table> 
-        <p>discounted products</p>
-
-        <tr><td>
-            itemid
-            cost
-            Discount
-           </td>
-        </tr>
-    <tr><td>
-        5004
-        Rs.40
-        20%
-        </td>
-    </tr>
-    <tr>
-        <td>   5005
-            Rs.50
-            20%</td>
-     
-    </tr>
-  
+      Available Products Table -->
+      <!-- <table>
+        <thead>
+          <tr>
+            <th>Item ID</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of filteredProducts()">
+            <td>{{product.itemid}}</td>
+            <td>{{product.cost}}</td>
+          </tr>
+        </tbody>
+      </table> -->
     
-</table>
-</div>
-<br>
-<br>
+      <!-- Discounted Products Table -->
+      <!-- <table>
+        <p>Discounted Products</p>
+        <thead>
+          <tr>
+            <th>Item ID</th>
+            <th>Cost</th>
+            <th>Discount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let discountedProduct of filteredDiscountedProducts()">
+            <td>{{discountedProduct.itemid}}</td>
+            <td>{{discountedProduct.cost}}</td>
+            <td>{{discountedProduct.discount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <br>
+    <br>
 <form  class="amountCalculation"#forms="ngForm"  (ngSubmit)="calculateTotalBill(forms)">
     <div>
     <label class="form-label" for="itemId"> Itemid</label><br>
@@ -99,4 +96,4 @@
 <div>
 
 <p>Your bill Amount is Rs:{{totalBill}} only/-</p>
-</div>
+</div>  -->
