@@ -1,48 +1,49 @@
-.erroemessage{
-    color: red;
-}
+
+
+
 h1{
-    text-align: center;
+    align-items: center;
+    place-self: center;
+    margin-top: 200px;
+    font-weight: bolder;
 }
 button{
+    height: 40px;
+    width:200px;
+}
+.google{
+    background-color:blue;
+    color: white;
+    margin-top: 20px;
+    border-radius: 20px;
+    margin-left: 575px;
+
+
+}
+.guest{
+    background-color:green;
+    color: white;
+    border-radius: 20px;
+    margin-left: 575px;
+}
+.guest:hover{
+    background-color: greenyellow;
     color:white;
-    font-weight: bold;
-    background-color: blue;
+    color: black;
 
 }
-.amountCalculation{
-    text-align: center;
+.google:hover{
+    background-color: blueviolet;
+    color:white;
+    color: black;
 }
-.form-dropDown{
-    width: 180px;
-    height:25px;
-    
+.phone{
+    background-color: yellow;
+    color: black;
+    margin-top: 20px;
+    border-radius: 20px;
+    margin-left: 575px;
 }
-table{
-    border: solid 1px;
-    
-    border-collapse: collapse;
-}
-th,td{
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-}
-.centeralign{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    gap:20px;
-}
-ul{
-    list-style: none;
-    flex-direction: row;
-    display: flex;
-
-}
-li{
-    border:solid 1px;
-    gap:10px;
-    color: aqua;
-
+.phone:hover{
+    background-color: aquamarine;
 }

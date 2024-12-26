@@ -1,99 +1,13 @@
-<!-- 
-
-<h1>Our Products</h1>
-<div class="centeralign">
-    <div>
-        <label for="searchInput">Search Items:</label>
-        <input 
-          type="text" 
-          id="searchInput" 
-          [(ngModel)]="searchQuery" 
-          placeholder="Search by Item ID or Name" 
-          class="form-control"
-        />
-      </div>
-    
-      Available Products Table -->
-      <!-- <table>
-        <thead>
-          <tr>
-            <th>Item ID</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of filteredProducts()">
-            <td>{{product.itemid}}</td>
-            <td>{{product.cost}}</td>
-          </tr>
-        </tbody>
-      </table> -->
-    
-      <!-- Discounted Products Table -->
-      <!-- <table>
-        <p>Discounted Products</p>
-        <thead>
-          <tr>
-            <th>Item ID</th>
-            <th>Cost</th>
-            <th>Discount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let discountedProduct of filteredDiscountedProducts()">
-            <td>{{discountedProduct.itemid}}</td>
-            <td>{{discountedProduct.cost}}</td>
-            <td>{{discountedProduct.discount}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <br>
-    <br>
-<form  class="amountCalculation"#forms="ngForm"  (ngSubmit)="calculateTotalBill(forms)">
-    <div>
-    <label class="form-label" for="itemId"> Itemid</label><br>
-
-    <input required maxlength="4" class="form-control" type="number" autocomplete="off" id="userinput" #itemid="ngModel"name="itemid" ngModel />
-    <br>
-    <span *ngIf="itemid.invalid && itemid.touched" class="erroemessage">Enter valid data</span>
-</div>
-<div>
-    <label class="form-label" for="quantity"> Quantity</label><br>
-    
-    <input required minlength="1" maxlength="3" class="form-control" type="number" autocomplete="off" id="inputQuantity" #quantity="ngModel"name="quantity"ngModel />
-    <br>
-    <span *ngIf="quantity.invalid && quantity.dirty" class="erroemessage">Enter valid data</span>
-</div>
-<div>
-    <label class="form-label" for="add">add </label><br>
-    <input required minlength="1" class="form-control" type="text" id="addMoreItem"autocomplete="off" #add="ngModel" name="add" ngModel />
-    <br>
-    <span *ngIf="add.invalid && add.touched" class="erroemessage">Enter valid data</span>
-    <br>
-</div>
 
 
-    <div>
-        
-        <button type="submit" [disabled]="!forms.valid">Shop now</button>
-    </div>
-</form>
 
-<ul *ngFor="let product of AddedItems;let i=index">
-<table>
-    
-    <td>{{i+1}}</td>
-    
-<th>items id</th>
-    <td>{{product.items}}</td>
-<th> quantity</th>
-<td>{{product.quantity}}</td>
-<th> item cost</th>
-<td>{{product.itemcost}}</td>
+
 
 <div>
-
-<p>Your bill Amount is Rs:{{totalBill}} only/-</p>
-</div>  -->
+  <h1>Welcome Our Smart Store</h1>
+  <button class="guest">countinue as Guest</button><br>
+  <button class="phone" routerLink="login">countinue as with phone number</button><br>
+  <button class="google"> countinue as with google</button>
+  
+  
+</div>
